@@ -20,7 +20,8 @@ inverter_url = "http://{}/solar_api/v1/GetInverterRealtimeData.cgi?Scope=Device&
 try:
     inverter_data = requests.get(inverter_url, timeout=10)
 except:
-    print("Failed to connect to inverter API at {}".format(config.inverter_ip))
+    if debug:
+        print("Failed to connect to inverter API at {}".format(config.inverter_ip))
     exit()
 
 if inverter_data.status_code == requests.codes.ok:
